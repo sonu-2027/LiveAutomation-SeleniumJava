@@ -59,7 +59,7 @@ public class TC_RF_003 {
 	}
 	
 	public String generateNewEmail() {
-		return new Date().toString().replaceAll("\\s","").replaceAll("\\:","")+"@gmail.com";
+		return new Date(0).toString().replaceAll("\\s","").replaceAll("\\:","")+"@gmail.com";
 	}
 	
 	
