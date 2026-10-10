@@ -1,5 +1,12 @@
 target/
-
 bin/
-
 *.log
+
+# TestNG generated reports
+test-output/
+
+# Excel temporary lock files
+~$*
+
+# IDE files (optional)
+.settings/
