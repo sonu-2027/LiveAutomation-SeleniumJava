@@ -52,4 +52,31 @@ public class Login extends Base {
 		Assert.assertTrue(accountPage.didWenavigateToAccountPage());
 		
 	}
+	
+	@Test(priority=2)
+	public void verifyLoginWithInvalidCredentials() {
+		loginPage.enterEmail(CommonUtils.generateBrandNewEmail());
+		loginPage.enterPassword(prop.getProperty("invalidPassword"));
+		loginPage.clickOnLoginButton();
+		String expectedWarning = "Warning: No match for E-Mail Address and/or Password.";
+		Assert.assertEquals(loginPage.getWarningMessage(),expectedWarning);
+	}
+	
+	@Test(priority=3)
+	public void verifyLoginWithInvalidEmailandValidPassword() {
+		loginPage.enterEmail(CommonUtils.generateBrandNewEmail());
+		loginPage.enterPassword(prop.getProperty("validPassword"));
+		loginPage.clickOnLoginButton();
+		String expectedWarning = "Warning: No match for E-Mail Address and/or Password.";
+		Assert.assertEquals(loginPage.getWarningMessage(),expectedWarning);
+	}
+	
+	@Test(priority=4)
+	public void verifyLoginWithValidEmailandInvalidPassword() {
+		loginPage.enterEmail(CommonUtils.validEmailRandomizeGenerator());
+		loginPage.enterPassword(prop.getProperty("invalidPassword"));
+		loginPage.clickOnLoginButton();
+		String expectedWarning = "Warning: No match for E-Mail Address and/or Password.";
+		Assert.assertEquals(loginPage.getWarningMessage(),expectedWarning);
+	}
 }
