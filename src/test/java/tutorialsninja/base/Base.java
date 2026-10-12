@@ -37,4 +37,9 @@ public class Base {
 		return driver;
 
 	}
+	public void closeBrowser(WebDriver driver) {
+		if(driver!=null) {
+			driver.quit();
+		}
+	}
 }
