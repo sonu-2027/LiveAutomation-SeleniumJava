@@ -79,4 +79,27 @@ public class Login extends Base {
 		String expectedWarning = "Warning: No match for E-Mail Address and/or Password.";
 		Assert.assertEquals(loginPage.getWarningMessage(),expectedWarning);
 	}
+	
+	@Test(priority=5)
+	public void verifyNumberOfUnsuccessfulLoginAttempts() throws InterruptedException{
+		loginPage.enterEmail(CommonUtils.generateBrandNewEmail());
+		loginPage.enterPassword(prop.getProperty("validPassword"));
+		String expectedWarning = "Warning:No match for E-Mail Address and/or Password.";
+		loginPage.clickOnLoginButton();
+		Assert.assertEquals(loginPage.getWarningMessage(),expectedWarning);
+		loginPage.clickOnLoginButton();
+		Assert.assertEquals(loginPage.getWarningMessage(),expectedWarning);
+		loginPage.clickOnLoginButton();
+		Assert.assertEquals(loginPage.getWarningMessage(),expectedWarning);
+		loginPage.clickOnLoginButton();
+		Assert.assertEquals(loginPage.getWarningMessage(),expectedWarning);
+		loginPage.clickOnLoginButton();
+		Assert.assertEquals(loginPage.getWarningMessage(),expectedWarning);
+		loginPage.clickOnLoginButton();
+		Assert.assertEquals(loginPage.getWarningMessage(),expectedWarning);
+		expectedWarning = "WArning: Your account has exceeded allowed number of login attempts.Please try again in 1 hour.";
+		Assert.assertEquals(loginPage.getWarningMessage(),expectedWarning);
+		
+	}
+	 
 }
